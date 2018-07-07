@@ -1,11 +1,19 @@
 import React, { Component, Fragment } from 'react';
-import './App.css'
+import '../styles/home.css'
 
-class App extends Component {
+class Home extends Component {
+  componentDidMount(){
+    document.body.className = 'home text-center';
+    document.getElementById('root').className = 'cover-container d-flex h-100 p-3 mx-auto flex-column';
+  }
+  componentDidUnmount(){
+    document.body.className = '';
+    document.getElementById('root').className = '';
+  }
   render() {
     return (
       <Fragment>
-        <main className="inner cover" role="main">
+        <main id="home" className="inner cover" role="main">
           <img alt="Corporación Opción Comunitaria" src="./images/logo.jpg" className="img-fluid mb-5" />
           <h1 className="cover-heading text-warning">Bienvenidos</h1>
           <p className="lead mb-5">Queremos difundir, promover y gestionar la multiplicación de procesos comunitarios exitosos y sustentables que busquen mejorar la convivencia y la restitución y defensa de los derechos fundamentales consagrados en la Constitución Política de Colombia para sembrar raices para una paz estable y duradera.</p>
@@ -14,7 +22,7 @@ class App extends Component {
             <a className="btn btn-lg btn-secondary" href="http://compaz-staging.opcioncomunitaria.org/managers/sign_in">Zona de Pruebas</a>
           </p>
           <p className="lead">
-            <a className="btn btn-lg btn-secondary" href="/centro_apoyo">Centro de Apoyo</a>
+            <a className="btn btn-lg btn-secondary" href="/ci/centro_apoyo/inicio.php">Centro de Apoyo</a>
           </p>
         </main>
         <footer className="mastfoot mt-auto">
@@ -27,4 +35,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Home;
