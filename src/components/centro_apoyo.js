@@ -1,12 +1,10 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import Navbar from './centro_apoyo/navbar';
-import Plans from './centro_apoyo/plans';
-import Plan from './centro_apoyo/plan';
+import Navbar from '../components/centro_apoyo/navbar';
+import Routes from '../routes/centro_apoyo';
 
 class CentroApoyo extends Component {
-  componentDidMount(){
+  componentWillMount(){
     document.body.className = '';
     document.getElementById('root').className = '';
   }
@@ -14,14 +12,8 @@ class CentroApoyo extends Component {
     return (
       <Fragment>
         <Navbar />
-        <div class="container-fluid">
-          <BrowserRouter>
-            <Switch>
-              <Route path="/planes" component={Plans}  />
-              <Route path="/planes/:id" component={Plan}  />
-              <Route component={Plans} />
-            </Switch>
-          </BrowserRouter>
+        <div className="container-fluid">
+          <Routes />
         </div>
       </Fragment>
     );

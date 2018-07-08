@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+
+import { BASEDIR } from '../../routes/centro_apoyo';
 
 export default class Navbar extends Component {
   render() {
@@ -8,14 +10,14 @@ export default class Navbar extends Component {
         <button className="navbar-toggler" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation" data-target="#navbarMain" data-toggle="collapse" type="button">
           <span className="navbar-toggler-icon"></span>
         </button>
-        <a href="/" className="navbar-brand px-3 bg-warning">
-          <img src="/images/icon.png" alt="Icon" />
+        <a href="/" className="navbar-brand px-3">
+          <img src="/images/icon.png" alt="Icon" style={{height: '40px'}}/>
         </a>
         <div id="navbarMain" className="collapse navbar-collapse">
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item"><Link to="/centro_apoyo/planes">Planes de Formación</Link></li>
-            <li className="nav-item"><Link to="/centro_apoyo/sitios">Sitios y Documentos</Link></li>
-            <li className="nav-item"><Link to="/centro_apoyo/faqs">Preguntas Frecuentes</Link></li>
+            <li className="nav-item"><NavLink className="nav-link" activeClassName="active" to={`${BASEDIR}/planes`}>Planes de Formación</NavLink></li>
+            <li className="nav-item"><NavLink className="nav-link" activeClassName="active" to={`${BASEDIR}/sitios`}>Sitios y Documentos</NavLink></li>
+            <li className="nav-item"><NavLink className="nav-link" activeClassName="active" to={`${BASEDIR}/faqs`}>Preguntas Frecuentes</NavLink></li>
           </ul>
         </div>
       </nav>

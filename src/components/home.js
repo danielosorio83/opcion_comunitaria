@@ -2,11 +2,11 @@ import React, { Component, Fragment } from 'react';
 import '../styles/home.css'
 
 class Home extends Component {
-  componentDidMount(){
+  componentWillMount(){
     document.body.className = 'home text-center';
     document.getElementById('root').className = 'cover-container d-flex h-100 p-3 mx-auto flex-column';
   }
-  componentDidUnmount(){
+  componentWillUnmount(){
     document.body.className = '';
     document.getElementById('root').className = '';
   }

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
 import { findPlan, destroyPlan } from '../../actions';
+// import { BASEDIR } from '../../routes/centro_apoyo';
 
 class Plan extends Component {
   componentWillMount(){
@@ -39,7 +40,7 @@ class Plan extends Component {
 
 function mapStateToProps(state){
   return {
-    plan: state.plans.plan
+    plan: state.plans.single
   }
 }
 

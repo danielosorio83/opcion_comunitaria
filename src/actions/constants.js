@@ -1,4 +1,4 @@
-export const CENTRO_APOYO_API_URL = '/ci/centro_apoyo';
+export const CENTRO_APOYO_API_URL = 'http://159.89.42.131/ci/centro_apoyo/api';
 export const API_KEY = 'asuroxo';
 
 export const FETCH_PLANS = 'FETCH_PLANS';
