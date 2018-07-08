@@ -6,7 +6,7 @@ import HeaderTitle from '../shared/header_title';
 
 import PlansItem from './plans_item';
 
-import { fetchPlans } from '../../actions';
+import { fetchPlans } from '../../actions/plans';
 
 class Plans extends Component {
   componentWillMount(){

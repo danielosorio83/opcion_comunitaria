@@ -8,7 +8,7 @@ import Error from '../shared/error';
 import Loading from '../shared/loading';
 import HeaderTitle from '../shared/header_title';
 
-import { findPlan, destroyPlan } from '../../actions';
+import { findPlan, destroyPlan } from '../../actions/plans';
 import { BASEDIR } from '../../routes/centro_apoyo';
 
 class Plan extends Component {
@@ -27,7 +27,7 @@ class Plan extends Component {
   render() {
     const { plan, error } = this.props;
     if (typeof(error) !== 'undefined'){
-      return <Error data={error} title="Plan de Formación" path="planes" basedir={BASEDIR} />;
+      return <Error data={error} title="Plan de Formación" path={`${BASEDIR}/planes`} />;
     }
     if (!plan){
       return <Loading />;
