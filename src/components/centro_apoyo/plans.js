@@ -7,7 +7,6 @@ import HeaderTitle from '../shared/header_title';
 import PlansItem from './plans_item';
 
 import { fetchPlans } from '../../actions';
-import { BASEDIR } from '../../routes/centro_apoyo';
 
 class Plans extends Component {
   componentWillMount(){

@@ -1,9 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
 
 import PlanPasos from './plan_pasos';
-
-import { BASEDIR } from '../../routes/centro_apoyo';
 
 export default class PlanItem extends Component {
   render() {

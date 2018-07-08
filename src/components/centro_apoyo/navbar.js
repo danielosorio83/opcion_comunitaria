@@ -10,8 +10,9 @@ export default class Navbar extends Component {
         <button className="navbar-toggler" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation" data-target="#navbarMain" data-toggle="collapse" type="button">
           <span className="navbar-toggler-icon"></span>
         </button>
-        <a href="/" className="navbar-brand px-3">
-          <img src="/images/icon.png" alt="Icon" style={{height: '40px'}}/>
+        <a href="/" className="navbar-brand px-1 bg-light">
+          <img src="/images/logo.jpg" alt="Icon" style={{height: '30px'}}/>
+          <span className="ml-1 text-dark">Centro de Apoyo</span>
         </a>
         <div id="navbarMain" className="collapse navbar-collapse">
           <ul className="navbar-nav mr-auto">

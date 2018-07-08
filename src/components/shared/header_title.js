@@ -9,7 +9,7 @@ class HeaderTitle extends Component {
         { path
           ?
             <div className="float-right clearfix">
-              <Link to={path} className="btn btn-primary">Volver</Link>
+              <Link to={path} className="btn btn-info">Volver</Link>
             </div>
           :
           ''
