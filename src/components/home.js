@@ -22,7 +22,7 @@ class Home extends Component {
             <a className="btn btn-lg btn-secondary" href="http://compaz-staging.opcioncomunitaria.org/managers/sign_in">Zona de Pruebas</a>
           </p>
           <p className="lead">
-            <a className="btn btn-lg btn-secondary" href="/ci/centro_apoyo/inicio.php">Centro de Apoyo</a>
+            <a className="btn btn-lg btn-secondary" href="/ci/centro_apoyo">Centro de Apoyo</a>
           </p>
         </main>
         <footer className="mastfoot mt-auto">

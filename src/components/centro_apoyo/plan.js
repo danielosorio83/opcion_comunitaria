@@ -3,8 +3,14 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
+import PlanItem from './plan_item';
+
+import Error from '../shared/error';
+import Loading from '../shared/loading';
+import HeaderTitle from '../shared/header_title';
+
 import { findPlan, destroyPlan } from '../../actions';
-// import { BASEDIR } from '../../routes/centro_apoyo';
+import { BASEDIR } from '../../routes/centro_apoyo';
 
 class Plan extends Component {
   componentWillMount(){
@@ -14,25 +20,24 @@ class Plan extends Component {
   destroyPlan(){
     this.props.destroyPlan(this.props.match.params.id)
       .then( () => {
-        this.props.history.push('/centro_apoyo/planes');
+        this.props.history.push(BASEDIR + '/planes');
       })
 
   }
 
   render() {
-    const { plan } = this.props;
+    const { plan, error } = this.props;
+    if (typeof(error) !== 'undefined'){
+      return <Error data={error} title="Plan de Formación" path="planes" basedir={BASEDIR} />;
+    }
     if (!plan){
-      return <div>Cargando...</div>;
+      return <Loading />;
     }
 
     return (
       <div>
-        <div className="btn-group pull-right">
-          <Link to="/" className="btn btn-primary">Back</Link>
-          <button type="button" className="btn btn-danger" onClick={this.destroyPlan.bind(this)}>Borrar</button>
-        </div>
-        <h3 className="lead">{plan.title}</h3>
-        <p>{plan.content}</p>
+        <HeaderTitle title="Plan de Formación" path={`${BASEDIR}/planes`} />
+        <PlanItem plan={plan} />
       </div>
     );
   }
@@ -40,7 +45,8 @@ class Plan extends Component {
 
 function mapStateToProps(state){
   return {
-    plan: state.plans.single
+    plan: state.plans.single,
+    error: state.plans.error
   }
 }
 
