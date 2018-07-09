@@ -26,7 +26,7 @@ export function findLup(id){
     .catch((err) => {
       return {
         type: ERROR_LUP,
-        payload: err.response.data
+        payload: err.response ? err.response.data : err
       }
     })
 }

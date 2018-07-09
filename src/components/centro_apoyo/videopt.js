@@ -2,49 +2,48 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import LupItem from './lup_item';
+import VideoptItem from './videopt_item';
 
 import Error from '../shared/error';
 import Loading from '../shared/loading';
 import HeaderTitle from '../shared/header_title';
 
-import { findLup, destroyLup } from '../../actions/lups';
+import { findVideopt, destroyVideopt } from '../../actions/videopts';
 import { BASEDIR } from '../../routes/centro_apoyo';
 
 const queryString = require('query-string');
 
-class Lup extends Component {
+class Videopt extends Component {
   componentWillMount(){
-    this.props.findLup(this.props.match.params.id);
+    this.props.findVideopt(this.props.match.params.id);
   }
 
   pathToBack(){
     const params = queryString.parse(this.props.location.search);
-    const path = params.plan ? '/planes' + params.plan : '/lups';
+    const path = params.lup ? '/lups' + params.lup : '/videopts';
     return BASEDIR + path;
   }
 
-  destroyLup(){
-    this.props.destroyLup(this.props.match.params.id)
+  destroyVideopt(){
+    this.props.destroyVideopt(this.props.match.params.id)
       .then( () => {
         this.props.history.push(this.pathToBack());
       })
-
   }
 
   render() {
-    const { lup, error } = this.props;
+    const { videopt, error } = this.props;
     if (typeof(error) !== 'undefined'){
-      return <Error data={error} title="Lecciones de un Punto" path={this.pathToBack()} />;
+      return <Error data={error} title="Notas Técnicas" path={this.pathToBack()} />;
     }
-    if (!lup){
+    if (!videopt){
       return <Loading />;
     }
 
     return (
       <div>
-        <HeaderTitle title="Lecciones de un Punto" path={this.pathToBack()} />
-        <LupItem lup={lup} />
+        <HeaderTitle title="Notas Técnicas" path={this.pathToBack()} />
+        <VideoptItem videopt={videopt} />
       </div>
     );
   }
@@ -52,9 +51,9 @@ class Lup extends Component {
 
 function mapStateToProps(state){
   return {
-    lup: state.lups.single,
-    error: state.lups.error
+    videopt: state.videopts.single,
+    error: state.videopts.error
   }
 }
 
-export default connect(mapStateToProps, { findLup, destroyLup })(withRouter(Lup));
+export default connect(mapStateToProps, { findVideopt, destroyVideopt })(withRouter(Videopt));

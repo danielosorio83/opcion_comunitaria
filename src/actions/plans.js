@@ -26,7 +26,7 @@ export function findPlan(id){
     .catch((err) => {
       return {
         type: ERROR_PLAN,
-        payload: err.response.data
+        payload: err.response ? err.response.data : err
       }
     })
 }

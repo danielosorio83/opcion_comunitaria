@@ -8,9 +8,9 @@ export default class PlansItem extends Component {
     const { plan } = this.props;
     return (
       <Fragment>
-        <blockquote class="blockquote">
+        <blockquote className="blockquote">
           <Link className="h4" to={`${BASEDIR}/planes/${plan.k202id}`}>{plan.c202titulo}</Link>
-          <footer class="blockquote-footer">
+          <footer className="blockquote-footer">
             Autor: {plan.autor} | <b>{plan.d202fecha_modif}</b> | Visitas: {plan.n202visitas}
           </footer>
         </blockquote>

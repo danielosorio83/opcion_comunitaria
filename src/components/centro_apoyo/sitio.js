@@ -2,49 +2,48 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import LupItem from './lup_item';
+import SitioItem from './sitio_item';
 
 import Error from '../shared/error';
 import Loading from '../shared/loading';
 import HeaderTitle from '../shared/header_title';
 
-import { findLup, destroyLup } from '../../actions/lups';
+import { findSitio, destroySitio } from '../../actions/sitios';
 import { BASEDIR } from '../../routes/centro_apoyo';
 
 const queryString = require('query-string');
 
-class Lup extends Component {
+class Sitio extends Component {
   componentWillMount(){
-    this.props.findLup(this.props.match.params.id);
+    this.props.findSitio(this.props.match.params.id);
   }
 
   pathToBack(){
     const params = queryString.parse(this.props.location.search);
-    const path = params.plan ? '/planes' + params.plan : '/lups';
+    const path = params.lup ? '/lups' + params.lup : '/sitios';
     return BASEDIR + path;
   }
 
-  destroyLup(){
-    this.props.destroyLup(this.props.match.params.id)
+  destroySitio(){
+    this.props.destroySitio(this.props.match.params.id)
       .then( () => {
         this.props.history.push(this.pathToBack());
       })
-
   }
 
   render() {
-    const { lup, error } = this.props;
+    const { sitio, error } = this.props;
     if (typeof(error) !== 'undefined'){
-      return <Error data={error} title="Lecciones de un Punto" path={this.pathToBack()} />;
+      return <Error data={error} title="Sitios y Documentos" path={this.pathToBack()} />;
     }
-    if (!lup){
+    if (!sitio){
       return <Loading />;
     }
 
     return (
       <div>
-        <HeaderTitle title="Lecciones de un Punto" path={this.pathToBack()} />
-        <LupItem lup={lup} />
+        <HeaderTitle title="Sitios y Documentos" path={this.pathToBack()} />
+        <SitioItem sitio={sitio} />
       </div>
     );
   }
@@ -52,9 +51,9 @@ class Lup extends Component {
 
 function mapStateToProps(state){
   return {
-    lup: state.lups.single,
-    error: state.lups.error
+    sitio: state.sitios.single,
+    error: state.sitios.error
   }
 }
 
-export default connect(mapStateToProps, { findLup, destroyLup })(withRouter(Lup));
+export default connect(mapStateToProps, { findSitio, destroySitio })(withRouter(Sitio));

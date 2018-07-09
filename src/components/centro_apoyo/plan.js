@@ -27,7 +27,7 @@ class Plan extends Component {
   render() {
     const { plan, error } = this.props;
     if (typeof(error) !== 'undefined'){
-      return <Error data={error} title="Plan de Formación" path={`${BASEDIR}/planes`} />;
+      return <Error data={error} title="Planes de Formación" path={`${BASEDIR}/planes`} />;
     }
     if (!plan){
       return <Loading />;
@@ -35,7 +35,7 @@ class Plan extends Component {
 
     return (
       <div>
-        <HeaderTitle title="Plan de Formación" path={`${BASEDIR}/planes`} />
+        <HeaderTitle title="Planes de Formación" path={`${BASEDIR}/planes`} />
         <PlanItem plan={plan} />
       </div>
     );
