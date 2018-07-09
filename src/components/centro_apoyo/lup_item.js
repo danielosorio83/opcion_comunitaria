@@ -13,8 +13,11 @@ export default class LupItem extends Component {
             Autor: {lup.autor} | <b>{lup.d201fecha_modif}</b> | Visitas: {lup.n201visitas}
           </footer>
         </blockquote>
-        <p>{lup.c201descripcion}</p>
-        <LupPasos pasos={lup.pasos} />
+        { lup.c201descripcion
+          ? <Fragment><hr /><p>{lup.c201descripcion}</p></Fragment>
+          : ''
+        }
+        <LupPasos pasos={lup.pasos} lup_id={lup.k201id} />
       </Fragment>
     );
   }

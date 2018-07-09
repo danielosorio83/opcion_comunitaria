@@ -11,6 +11,8 @@ import HeaderTitle from '../shared/header_title';
 import { findLup, destroyLup } from '../../actions/lups';
 import { BASEDIR } from '../../routes/centro_apoyo';
 
+const queryString = require('query-string');
+
 class Lup extends Component {
   componentWillMount(){
     this.props.findLup(this.props.match.params.id);
@@ -25,9 +27,10 @@ class Lup extends Component {
   }
 
   render() {
-    const { lup, error } = this.props;
+    const { lup, error, location } = this.props;
+    const params = queryString.parse(location.search)
     if (typeof(error) !== 'undefined'){
-      return <Error data={error} title="Lup de Formación" path={this.props.history.back} />;
+      return <Error data={error} title="Lup de Formación" path={`${BASEDIR}/planes/${params.plan}`} />;
     }
     if (!lup){
       return <Loading />;
@@ -35,7 +38,7 @@ class Lup extends Component {
 
     return (
       <div>
-        <HeaderTitle title="Lección de un Punto" path={this.props.history.back} />
+        <HeaderTitle title="Lección de un Punto" path={`${BASEDIR}/planes/${params.plan}`} />
         <LupItem lup={lup} />
       </div>
     );

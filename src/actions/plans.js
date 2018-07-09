@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-import { CENTRO_APOYO_API_URL, API_KEY } from './constants';
-import { FETCH_PLANS, CREATE_PLAN, FIND_PLAN, DESTROY_PLAN, ERROR_PLAN } from './constants';
+import { CENTRO_APOYO_API_URL, API_KEY } from '../constants';
+import { FETCH_PLANS, CREATE_PLAN, FIND_PLAN, DESTROY_PLAN, ERROR_PLAN } from '../constants';
 
 export function fetchPlans(){
   const request = axios.get(`${CENTRO_APOYO_API_URL}/formaciones.php?uid=0&todo=0&leng=es`);

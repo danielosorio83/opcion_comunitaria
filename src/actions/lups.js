@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-import { CENTRO_APOYO_API_URL, API_KEY } from './constants';
-import { FETCH_LUPS, CREATE_LUP, FIND_LUP, DESTROY_LUP, ERROR_LUP } from './constants';
+import { CENTRO_APOYO_API_URL, API_KEY } from '../constants';
+import { FETCH_LUPS, CREATE_LUP, FIND_LUP, DESTROY_LUP, ERROR_LUP } from '../constants';
 
 export function fetchLups(){
   const request = axios.get(`${CENTRO_APOYO_API_URL}/lups.php?uid=0&todo=0&leng=es`);

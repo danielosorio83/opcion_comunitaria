@@ -1,4 +1,4 @@
-import { FETCH_PLANS, FIND_PLAN, ERROR_PLAN } from '../actions/constants';
+import { FETCH_PLANS, FIND_PLAN, ERROR_PLAN } from '../constants';
 
 const INITIAL_STATE = { all: [], single: null };
 

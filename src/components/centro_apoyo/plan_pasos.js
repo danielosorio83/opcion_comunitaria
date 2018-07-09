@@ -5,12 +5,12 @@ import { BASEDIR } from '../../routes/centro_apoyo';
 
 class PlanPasos extends Component {
   renderPasos(){
-    const { pasos } = this.props;
+    const { pasos, plan_id } = this.props;
     return Object.keys(pasos).map( (i) => {
       let paso = pasos[i];
       return (
         <li key={paso.id}>
-          <strong>{i}. <Link to={`${BASEDIR}/lups/${paso.id}`}>{paso.descripcion}</Link></strong>
+          <strong>{i}. <Link to={`${BASEDIR}/lups/${paso.id}?plan=${plan_id}`}>{paso.descripcion}</Link></strong>
         </li>
       )
     })

@@ -12,3 +12,9 @@ export const FIND_LUP = 'FIND_LUP';
 export const ERROR_LUP = 'ERROR_LUP';
 export const CREATE_LUP = 'CREATE_LUP';
 export const DESTROY_LUP = 'DESTROY_LUP';
+
+export const PATH_BY_TIPO = {
+  enla: 'sitios',
+  videopt: 'notas_tecnicas',
+  exam: 'examenes'
+};

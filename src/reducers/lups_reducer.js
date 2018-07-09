@@ -1,4 +1,4 @@
-import { FETCH_LUPS, FIND_LUP, ERROR_LUP } from '../actions/constants';
+import { FETCH_LUPS, FIND_LUP, ERROR_LUP } from '../constants';
 
 const INITIAL_STATE = { all: [], single: null };
 

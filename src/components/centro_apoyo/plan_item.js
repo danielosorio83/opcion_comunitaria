@@ -13,8 +13,8 @@ export default class PlanItem extends Component {
             Autor: {plan.autor} | <b>{plan.d202fecha_modif}</b> | Visitas: {plan.n202visitas}
           </footer>
         </blockquote>
-        <p>{plan.c202descripcion}</p>
-        <PlanPasos pasos={plan.pasos} />
+        { plan.c202descripcion ? <Fragment><hr /><p>{plan.c202descripcion}</p></Fragment> : '' }
+        <PlanPasos pasos={plan.pasos} plan_id={plan.k202id} />
       </Fragment>
     );
   }
