@@ -2,19 +2,16 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
 import { BASEDIR } from '../../routes/centro_apoyo';
-import { PATH_BY_TIPO } from '../../constants';
+import { path_by_tipo } from '../../globals';
 
 class LupPasos extends Component {
-  path_by_tipo(tipo){
-    return PATH_BY_TIPO[tipo];
-  }
   renderPasos(){
     const { pasos, lup_id } = this.props;
     return Object.keys(pasos).map( (i) => {
       let paso = pasos[i];
       return (
         <li key={i}>
-          <strong>{i}. <Link to={`${BASEDIR}/${this.path_by_tipo(paso.tipo)}/${paso.tipoid}?lup=${lup_id}`}>{paso.descripcion}</Link></strong>
+          <strong>{i}. <Link to={`${BASEDIR}/${path_by_tipo(paso.tipo)}/${paso.tipoid}?lup=${lup_id}`}>{paso.descripcion}</Link></strong>
         </li>
       )
     })
