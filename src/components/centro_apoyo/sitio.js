@@ -20,7 +20,7 @@ class Sitio extends Component {
 
   pathToBack(){
     const params = queryString.parse(this.props.location.search);
-    const path = params.lup ? '/lups' + params.lup : '/sitios';
+    const path = params.lup ? '/lups/' + params.lup : '/sitios';
     return BASEDIR + path;
   }
 

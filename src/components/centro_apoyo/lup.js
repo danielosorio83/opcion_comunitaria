@@ -20,7 +20,7 @@ class Lup extends Component {
 
   pathToBack(){
     const params = queryString.parse(this.props.location.search);
-    const path = params.plan ? '/planes' + params.plan : '/lups';
+    const path = params.plan ? '/planes/' + params.plan : '/lups';
     return BASEDIR + path;
   }
 

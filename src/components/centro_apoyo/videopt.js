@@ -20,7 +20,7 @@ class Videopt extends Component {
 
   pathToBack(){
     const params = queryString.parse(this.props.location.search);
-    const path = params.lup ? '/lups' + params.lup : '/videopts';
+    const path = params.lup ? '/lups/' + params.lup : '/videopts';
     return BASEDIR + path;
   }
 

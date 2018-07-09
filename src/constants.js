@@ -1,4 +1,6 @@
-export const CENTRO_APOYO_API_URL = 'http://159.89.42.131/ci/centro_apoyo/api';
+export const CENTRO_APOYO_URL = 'http://opcioncomunitaria.org/ci/centro_apoyo';
+export const CENTRO_APOYO_API_URL = CENTRO_APOYO_URL + '/api';
+export const CENTRO_APOYO_DOWNLOAD_URL = CENTRO_APOYO_URL + '/download.php?uid=0&todo=0&leng=es';
 export const API_KEY = 'asuroxo';
 
 export const FETCH_PLANS = 'FETCH_PLANS';

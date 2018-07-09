@@ -20,7 +20,7 @@ class Exam extends Component {
 
   pathToBack(){
     const params = queryString.parse(this.props.location.search);
-    const path = params.lup ? '/lups' + params.lup : '/exams';
+    const path = params.lup ? '/lups/' + params.lup : '/exams';
     return BASEDIR + path;
   }
 
