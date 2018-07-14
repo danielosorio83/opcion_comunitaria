@@ -11,7 +11,7 @@ import HeaderTitle from '../shared/header_title';
 import { findVideopt, destroyVideopt } from '../../actions/videopts';
 import { BASEDIR } from '../../routes/centro_apoyo';
 
-const queryString = require('query-string');
+const queryString = require('qs');
 
 class Videopt extends Component {
   componentWillMount(){
@@ -19,7 +19,7 @@ class Videopt extends Component {
   }
 
   pathToBack(){
-    const params = queryString.parse(this.props.location.search);
+    const params = queryString.parse(this.props.location.search.replace('?', ''));
     const path = params.lup ? '/lups/' + params.lup : '/videopts';
     return BASEDIR + path;
   }

@@ -11,7 +11,7 @@ import HeaderTitle from '../shared/header_title';
 import { findSitio, destroySitio } from '../../actions/sitios';
 import { BASEDIR } from '../../routes/centro_apoyo';
 
-const queryString = require('query-string');
+const queryString = require('qs');
 
 class Sitio extends Component {
   componentWillMount(){
@@ -19,7 +19,7 @@ class Sitio extends Component {
   }
 
   pathToBack(){
-    const params = queryString.parse(this.props.location.search);
+    const params = queryString.parse(this.props.location.search.replace('?', ''));
     const path = params.lup ? '/lups/' + params.lup : '/sitios';
     return BASEDIR + path;
   }

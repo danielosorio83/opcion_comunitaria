@@ -11,7 +11,7 @@ import HeaderTitle from '../shared/header_title';
 import { findLup, destroyLup } from '../../actions/lups';
 import { BASEDIR } from '../../routes/centro_apoyo';
 
-const queryString = require('query-string');
+const queryString = require('qs');
 
 class Lup extends Component {
   componentWillMount(){
@@ -19,7 +19,7 @@ class Lup extends Component {
   }
 
   pathToBack(){
-    const params = queryString.parse(this.props.location.search);
+    const params = queryString.parse(this.props.location.search.replace('?', ''));
     const path = params.plan ? '/planes/' + params.plan : '/lups';
     return BASEDIR + path;
   }
