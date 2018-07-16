@@ -35,3 +35,19 @@ export function parse_slides(links){
   }
   return slides;
 }
+
+export function parse_times(links){
+  let times = [];
+  if (links.length > 0 ){
+    for (var i in links) {
+      let link = links[i];
+      let sync_accion = (link.n211tipo_sync === 1 ? link.n211sync_img : (link.n211tipo_sync === 2 ? link.n211sync_link : parse2int(link.k211id)));
+      times.push([parse2int(link.n211tiempo), parse2int(link.n211slide), parse2int(link.n211tipo_sync), sync_accion]);
+    }
+  }
+  return times;
+}
+
+function parse2int(number){
+  return parseInt(number, 10);
+}

@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
 
 import VideoptSlideshare from './videopt_slideshare';
 import VideoptNoSlideshare from './videopt_no_slideshare';
@@ -14,6 +13,13 @@ class VideoptPublica extends Component {
       slide_times: []
     }
   }
+
+  changeSlide(new_slide){
+    this.setState({
+      current_slide: new_slide
+    });
+  }
+  
   render() {
     const { videopt } = this.props;
     let tipopt = parseInt(videopt.i210tipopt, 10);
@@ -24,17 +30,10 @@ class VideoptPublica extends Component {
     return (
       <Fragment>
         { slideshare ? <VideoptSlideshare videopt={videopt} /> : <VideoptNoSlideshare videopt={videopt} /> }
-        { videoleft ? <VideoptYoutubeLeft videopt={videopt} /> : <VideoptYoutubeRight videopt={videopt} /> }
+        { videoleft ? <VideoptYoutubeLeft videopt={videopt} current_slide={this.state.current_slide} changeSlide={this.changeSlide} /> : <VideoptYoutubeRight videopt={videopt} current_slide={this.state.current_slide} changeSlide={this.changeSlide.bind(this)} /> }
       </Fragment>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    current_slide: state.current_slide,
-    slide_times: state.slide_times
-  }
-};
-
-export default connect(mapStateToProps)(VideoptPublica);
+export default VideoptPublica;
