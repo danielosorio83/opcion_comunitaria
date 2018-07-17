@@ -1,9 +1,10 @@
-export const CENTRO_APOYO_URL = 'http://opcioncomunitaria.org/ci/centro_apoyo';
-export const CENTRO_APOYO_API_URL = CENTRO_APOYO_URL + '/api';
-export const CENTRO_APOYO_DOWNLOAD_URL = CENTRO_APOYO_URL + '/download.php?uid=0&todo=0&leng=es';
-export const CENTRO_APOYO_IMAGE_URL = CENTRO_APOYO_URL + '/todo';
-export const CENTRO_APOYO_APISWF_URL = '/swf/apiswf.swf';
 export const API_KEY = 'asuroxo';
+export const DOMAIN = 'http://opcioncomunitaria.org';
+export const CENTRO_APOYO_URL = '/ci/centro_apoyo';
+export const CENTRO_APOYO_API_URL = DOMAIN + CENTRO_APOYO_URL + '/api';
+export const CENTRO_APOYO_DOWNLOAD_URL = DOMAIN + CENTRO_APOYO_URL + '/download.php?uid=0&todo=0&leng=es';
+export const CENTRO_APOYO_IMAGE_URL = DOMAIN + CENTRO_APOYO_URL + '/todo';
+export const APISWF_URL = '/swf/apiswf.swf';
 
 export const FETCH_PLANS = 'FETCH_PLANS';
 export const FIND_PLAN = 'FIND_PLAN';

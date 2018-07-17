@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactSWF from 'react-swf';
 
-import { CENTRO_APOYO_APISWF_URL } from '../../constants';
+import { APISWF_URL } from '../../constants';
 import { parse_slides, parse_times } from '../../globals';
 
 class ApiSwf extends Component {
@@ -9,23 +9,24 @@ class ApiSwf extends Component {
     super(props);
     this.state = {
       slide_times: [],
-      apiswf: null
+      apiswf: null,
+      current_time: (new Date()).getTime()
     }
   }
 
   componentDidMount() {
-    let slide_times = parse_times(this.props.videopt.links);
-    let apiswf = document.getElementById(this.props.id);
-    this.setState({ slide_times, apiswf });
-
-    if (apiswf && slide_times.length > 0 && slide_times[0][0] === 0){
-      // apiswf.seekExactFrame(slide_times[0][1]);
-    }
+    this.setState({
+      slide_times: parse_times(this.props.videopt.links),
+      apiswf: this.el.getFPDOMNode()
+    });
   }
 
   componentDidUpdate(prevProps, prevState) {
-    let { current_slide } = this.props;
+    let { current_slide, player_ready } = this.props;
     let { slide_times, apiswf } = this.state;
+    if (!prevProps.player_ready && player_ready && slide_times.length > 0 && slide_times[0][0] === 0){
+      apiswf.seekExactFrame(slide_times[0][1]);
+    }
     if (prevProps.current_slide !== current_slide){
       apiswf.seekExactFrame(slide_times[current_slide][1]);
     }
@@ -37,14 +38,14 @@ class ApiSwf extends Component {
       <div className="embed-responsive embed-responsive-16by9">
         <ReactSWF
           className="embed-responsive"
-          ref={c => this._swfPlayerNode = c}
+          ref={c => this.el = c}
           align="l"
           quality="high"
           wmode="transparent"
           id={id}
           name={id}
           allowScriptAccess="always"
-          src={CENTRO_APOYO_APISWF_URL}
+          src={`${APISWF_URL}?${this.state.current_time}`}
           flashVars={`espt=1&slides=${parse_slides(videopt)}&contentline=${contentline}`}
         />
       </div>

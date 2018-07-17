@@ -10,7 +10,8 @@ class VideoptPublica extends Component {
     super(props);
     this.state = {
       current_slide: 0,
-      slide_times: []
+      slide_times: [],
+      player_ready: false
     }
   }
 
@@ -19,7 +20,13 @@ class VideoptPublica extends Component {
       current_slide: new_slide
     });
   }
-  
+
+  setPlayerReady(){
+    this.setState({
+      player_ready: true
+    });
+  }
+
   render() {
     const { videopt } = this.props;
     let tipopt = parseInt(videopt.i210tipopt, 10);
@@ -30,7 +37,11 @@ class VideoptPublica extends Component {
     return (
       <Fragment>
         { slideshare ? <VideoptSlideshare videopt={videopt} /> : <VideoptNoSlideshare videopt={videopt} /> }
-        { videoleft ? <VideoptYoutubeLeft videopt={videopt} current_slide={this.state.current_slide} changeSlide={this.changeSlide} /> : <VideoptYoutubeRight videopt={videopt} current_slide={this.state.current_slide} changeSlide={this.changeSlide.bind(this)} /> }
+        {
+          videoleft
+          ? <VideoptYoutubeLeft videopt={videopt} player_ready={this.state.player_ready} setPlayerReady={this.setPlayerReady.bind(this)} current_slide={this.state.current_slide} changeSlide={this.changeSlide.bind(this)} />
+          : <VideoptYoutubeRight videopt={videopt} player_ready={this.state.player_ready} setPlayerReady={this.setPlayerReady.bind(this)} current_slide={this.state.current_slide} changeSlide={this.changeSlide.bind(this)} />
+        }
       </Fragment>
     );
   }

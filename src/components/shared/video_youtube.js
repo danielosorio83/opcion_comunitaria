@@ -9,22 +9,30 @@ class VideoYoutube extends Component {
     this.state = {
       id_interval: null,
       slide_times: [],
-      ytplayer: null
+      ytplayer: null,
+      active_slide: 0
     }
   }
 
   componentDidMount() {
     this.setState({
-      slide_times: parse_times(this.props.videopt.links)
-    })
+      slide_times: parse_times(this.props.videopt.links),
+      active_slide: this.props.current_slide
+    });
   }
 
   componentDidUpdate(prevProps, prevState) {
     let { current_slide } = this.props;
     let { slide_times, ytplayer } = this.state;
-    if (prevProps.current_slide !== current_slide){
+    if (prevProps.current_slide !== current_slide && current_slide !== this.state.active_slide){
+      this.changeActiveSlide(current_slide);
       ytplayer.seekTo(slide_times[current_slide][0], true);
     }
+  }
+
+  changeActiveSlide(active_slide){
+    this.setState({ active_slide });
+    this.props.changeSlide(active_slide);
   }
 
   render() {
@@ -45,10 +53,10 @@ class VideoYoutube extends Component {
     this.setState({
       ytplayer: event.target
     });
+    this.props.setPlayerReady();
   }
 
   _onChange(event){
-    let { changeSlide } = this.props;
     let { ytplayer } = this.state;
     switch (ytplayer.getPlayerState()){
       case -1:
@@ -56,7 +64,7 @@ class VideoYoutube extends Component {
         break;
       case 0:
         /* alert("FINALIZADO"); */
-        changeSlide(1);
+        this.changeActiveSlide(0);
         break;
       case 1:
         /* alert("REPRODUCIENDO"); */
@@ -78,7 +86,7 @@ class VideoYoutube extends Component {
   }
 
   runSync(){
-    let { current_slide, changeSlide } = this.props;
+    let { current_slide } = this.props;
     let { slide_times, ytplayer } = this.state;
     const duracion = ytplayer.getDuration();
     const tiempo_transucrrido = ytplayer.getCurrentTime();
@@ -86,7 +94,7 @@ class VideoYoutube extends Component {
       if (duracion > 0){
         for(var i = current_slide; i < slide_times.length; i++){
           if (slide_times[i][0] <= Math.floor(tiempo_transucrrido) && current_slide < i){
-            changeSlide(i);
+            this.changeActiveSlide(i);
             break;
           }
         }
