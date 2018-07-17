@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactSWF from 'react-swf';
 
 import { CENTRO_APOYO_APISWF_URL } from '../../constants';
 import { parse_slides, parse_times } from '../../globals';
@@ -26,7 +27,7 @@ class ApiSwf extends Component {
     let { current_slide } = this.props;
     let { slide_times, apiswf } = this.state;
     if (prevProps.current_slide !== current_slide){
-      apiswf.seekExactFrame(slide_times[current_slide][0]);
+      apiswf.seekExactFrame(slide_times[current_slide][1]);
     }
   }
 
@@ -34,16 +35,17 @@ class ApiSwf extends Component {
     const { videopt, contentline, id } = this.props;
     return (
       <div className="embed-responsive embed-responsive-16by9">
-        <embed
+        <ReactSWF
           className="embed-responsive"
+          ref={c => this._swfPlayerNode = c}
+          align="l"
           quality="high"
           wmode="transparent"
           id={id}
-          name="apiswf"
-          allowscriptaccess="always"
+          name={id}
+          allowScriptAccess="always"
           src={CENTRO_APOYO_APISWF_URL}
-          flashvars={`espt=1&slides=${parse_slides(videopt)}&contentline=${contentline}`}
-          type="application/x-shockwave-flash"
+          flashVars={`espt=1&slides=${parse_slides(videopt)}&contentline=${contentline}`}
         />
       </div>
     );
