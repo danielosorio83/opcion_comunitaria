@@ -22,6 +22,14 @@ class ApiSwf extends Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    let { current_slide } = this.props;
+    let { slide_times, apiswf } = this.state;
+    if (prevProps.current_slide !== current_slide){
+      apiswf.seekExactFrame(slide_times[current_slide][0]);
+    }
+  }
+
   render() {
     const { videopt, contentline, id } = this.props;
     return (
@@ -34,7 +42,7 @@ class ApiSwf extends Component {
           name="apiswf"
           allowscriptaccess="always"
           src={CENTRO_APOYO_APISWF_URL}
-          flashvars={`espt=1&slides=${parse_slides(videopt.links)}&contentline=${contentline}`}
+          flashvars={`espt=1&slides=${parse_slides(videopt)}&contentline=${contentline}`}
           type="application/x-shockwave-flash"
         />
       </div>

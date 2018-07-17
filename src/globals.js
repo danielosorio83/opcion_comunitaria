@@ -23,9 +23,11 @@ export function parse_duracion(duracion){
   return (horas > 0 ? horas + 'h ' : '') + (minutos > 0 ? minutos + 'min' : '');
 }
 
-export function parse_slides(links){
+export function parse_slides(videopt){
+  const slidesharedemo = (parse2int(videopt.i210tipovideo) === 2 || parse2int(videopt.i210tipovideo) === 3 || parse2int(videopt.i210tipovideo) === 4)
+  const links = videopt.links;
   let slides = '';
-  if (links.length > 0 ){
+  if (slidesharedemo && links.length > 0 ){
     for (var i in links) {
       let link = links[i];
       slides += (slides.length > 0 ? ';' : '') + `${link.n211tiempo}-${link.n211slide}`;
