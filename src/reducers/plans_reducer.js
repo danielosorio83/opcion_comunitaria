@@ -1,13 +1,13 @@
 import { FETCH_PLANS, FIND_PLAN, ERROR_PLAN } from '../constants';
 
-const INITIAL_STATE = { all: [], single: null };
+const INITIAL_STATE = { all: [], single: null, error: undefined };
 
 export default function(state = INITIAL_STATE, action){
   switch (action.type) {
     case FETCH_PLANS:
       return { ...state, all: action.payload.data };
     case FIND_PLAN:
-      return { ...state, single: action.payload };
+      return { ...state, single: action.payload, error: undefined };
     case ERROR_PLAN:
       return { ...state, error: action.payload };
     default:
