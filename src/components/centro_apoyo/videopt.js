@@ -43,7 +43,7 @@ class Videopt extends Component {
     return (
       <div>
         <HeaderTitle title="Notas Técnicas" path={this.pathToBack()} />
-        <VideoptItem videopt={videopt} />
+        <VideoptItem />
       </div>
     );
   }

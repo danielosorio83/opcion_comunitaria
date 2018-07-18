@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
 
 import VideoptYoutube from './videopt_youtube';
 import VideoptClipsharedemo from './videopt_clipsharedemo';
@@ -14,9 +15,9 @@ class VideoptPublica extends Component {
       <Fragment>
         {
           (youtube
-            ? <VideoptYoutube videopt={videopt} />
+            ? <VideoptYoutube />
             : (clipsharedemo
-              ? <VideoptClipsharedemo videopt={videopt} />
+              ? <VideoptClipsharedemo />
               : <UnderConstruction />
             )
           )
@@ -26,5 +27,10 @@ class VideoptPublica extends Component {
   }
 }
 
+function mapStateToProps(state){
+  return {
+    videopt: state.videopts.single
+  }
+}
 
-export default VideoptPublica;
+export default connect(mapStateToProps)(VideoptPublica);

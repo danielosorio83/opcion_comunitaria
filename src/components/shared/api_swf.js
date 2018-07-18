@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ReactSWF from 'react-swf';
 
 import { APISWF_URL } from '../../constants';
-import { parse_slides, parse_times } from '../../globals';
 
 class ApiSwf extends Component {
   constructor(props){
@@ -16,7 +15,7 @@ class ApiSwf extends Component {
 
   componentDidMount() {
     this.setState({
-      slide_times: parse_times(this.props.videopt.links),
+      slide_times: this.props.slide_times,
       apiswf: this.el.getFPDOMNode()
     });
   }
@@ -33,7 +32,7 @@ class ApiSwf extends Component {
   }
 
   render() {
-    const { videopt, contentline, id } = this.props;
+    const { slides, contentline, id } = this.props;
     return (
       <div className="embed-responsive embed-responsive-16by9">
         <ReactSWF
@@ -46,7 +45,7 @@ class ApiSwf extends Component {
           name={id}
           allowScriptAccess="always"
           src={`${APISWF_URL}?${this.state.current_time}`}
-          flashVars={`espt=1&slides=${parse_slides(videopt)}&contentline=${contentline}`}
+          flashVars={`espt={this.props.espt}&slides=${slides}&contentline=${contentline}`}
         />
       </div>
     );

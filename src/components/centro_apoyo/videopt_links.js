@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
@@ -38,4 +39,10 @@ class VideoptLinks extends Component {
   }
 }
 
-export default VideoptLinks;
+function mapStateToProps(state){
+  return {
+    links: state.videopts.single.links
+  }
+}
+
+export default connect(mapStateToProps)(VideoptLinks);

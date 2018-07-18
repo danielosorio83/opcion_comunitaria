@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -18,12 +19,12 @@ class Plans extends Component {
     if (!plans){
       return <Loading />;
     }
-    return plans.map( (plan) => {
+    return _.map(plans, plan => {
       return (
         <li key={plan.k202id} className="list-group-item">
           <PlansItem plan={plan} />
         </li>
-      )
+      );
     });
   }
 

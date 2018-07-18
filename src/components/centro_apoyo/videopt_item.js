@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
 
 import VideoptPrivada from './videopt_privada';
 import VideoptPublica from './videopt_publica';
@@ -15,11 +16,16 @@ class VideoptItem extends Component {
           </footer>
         </blockquote>
         { videopt.c210descripcion ? <Fragment><hr /><p>{videopt.c210descripcion}</p></Fragment> : '' }
-        { videopt.privada ? <VideoptPrivada videopt={videopt} /> : <VideoptPublica videopt={videopt} />}
+        { videopt.privada ? <VideoptPrivada /> : <VideoptPublica />}
       </Fragment>
     );
   }
 }
 
+function mapStateToProps(state){
+  return {
+    videopt: state.videopts.single
+  }
+}
 
-export default VideoptItem;
+export default connect(mapStateToProps)(VideoptItem);

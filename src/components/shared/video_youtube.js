@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import YouTube from 'react-youtube';
 
-import { parse_times } from '../../globals';
-
 class VideoYoutube extends Component {
   constructor(props){
     super(props);
@@ -16,7 +14,7 @@ class VideoYoutube extends Component {
 
   componentDidMount() {
     this.setState({
-      slide_times: parse_times(this.props.videopt.links),
+      slide_times: this.props.slide_times,
       active_slide: this.props.current_slide
     });
   }

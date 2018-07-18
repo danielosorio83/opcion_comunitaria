@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
 
 import VideoptSlideshare from './videopt_slideshare';
 import VideoptNoSlideshare from './videopt_no_slideshare';
@@ -36,15 +37,21 @@ class VideoptPublica extends Component {
     let videoleft = ([1,3,4].includes(template) || solovideo);
     return (
       <Fragment>
-        { slideshare ? <VideoptSlideshare videopt={videopt} /> : <VideoptNoSlideshare videopt={videopt} /> }
+        { slideshare ? <VideoptSlideshare /> : <VideoptNoSlideshare /> }
         {
           videoleft
-          ? <VideoptYoutubeLeft videopt={videopt} player_ready={this.state.player_ready} setPlayerReady={this.setPlayerReady.bind(this)} current_slide={this.state.current_slide} changeSlide={this.changeSlide.bind(this)} />
-          : <VideoptYoutubeRight videopt={videopt} player_ready={this.state.player_ready} setPlayerReady={this.setPlayerReady.bind(this)} current_slide={this.state.current_slide} changeSlide={this.changeSlide.bind(this)} />
+          ? <VideoptYoutubeLeft player_ready={this.state.player_ready} setPlayerReady={this.setPlayerReady.bind(this)} current_slide={this.state.current_slide} changeSlide={this.changeSlide.bind(this)} />
+          : <VideoptYoutubeRight player_ready={this.state.player_ready} setPlayerReady={this.setPlayerReady.bind(this)} current_slide={this.state.current_slide} changeSlide={this.changeSlide.bind(this)} />
         }
       </Fragment>
     );
   }
 }
 
-export default VideoptPublica;
+function mapStateToProps(state){
+  return {
+    videopt: state.videopts.single
+  }
+}
+
+export default connect(mapStateToProps)(VideoptPublica);
