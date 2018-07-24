@@ -19,9 +19,10 @@ class VideoptLinks extends Component {
   }
 
   render() {
+    const { solovideo } = this.props;
     return (
       <Fragment>
-        <hr />
+        { !solovideo ? <hr /> : '' }
         {
           this.props.links
             ?

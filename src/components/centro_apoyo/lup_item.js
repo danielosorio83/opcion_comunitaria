@@ -4,7 +4,7 @@ import LupPasos from './lup_pasos';
 
 export default class LupItem extends Component {
   render() {
-    const { lup } = this.props;
+    const { lup, plan_id } = this.props;
     return (
       <Fragment>
         <blockquote className="blockquote">
@@ -14,7 +14,7 @@ export default class LupItem extends Component {
           </footer>
         </blockquote>
         { lup.c201descripcion ? <Fragment><hr /><p>{lup.c201descripcion}</p></Fragment> : '' }
-        <LupPasos pasos={lup.pasos} lup_id={lup.k201id} />
+        <LupPasos pasos={lup.pasos} lup_id={lup.k201id} plan_id={plan_id} />
       </Fragment>
     );
   }

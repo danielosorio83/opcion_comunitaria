@@ -18,9 +18,18 @@ class Lup extends Component {
     this.props.findLup(this.props.match.params.id);
   }
 
+  parseQS(){
+    return queryString.parse(this.props.location.search.replace('?', ''));
+  }
+
+  planId(){
+    const params = this.parseQS();
+    return params.plan;
+  }
+
   pathToBack(){
-    const params = queryString.parse(this.props.location.search.replace('?', ''));
-    const path = params.plan ? '/planes/' + params.plan : '/lups';
+    const plan_id = this.planId();
+    const path = plan_id ? '/planes/' + plan_id : '/lups';
     return BASEDIR + path;
   }
 
@@ -41,10 +50,12 @@ class Lup extends Component {
       return <Loading />;
     }
 
+    const plan_id = this.planId();
+
     return (
       <div>
         <HeaderTitle title="Lecciones de un Punto" path={this.pathToBack()} />
-        <LupItem lup={lup} />
+        <LupItem lup={lup} plan_id={plan_id} />
       </div>
     );
   }

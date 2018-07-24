@@ -20,17 +20,26 @@ class VideoYoutube extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    let { current_slide } = this.props;
-    let { slide_times, ytplayer } = this.state;
+    const { current_slide } = this.props;
+    const { slide_times, ytplayer } = this.state;
     if (prevProps.current_slide !== current_slide && current_slide !== this.state.active_slide){
-      this.changeActiveSlide(current_slide);
       ytplayer.seekTo(slide_times[current_slide][0], true);
+      this.changeActiveSlide(current_slide);
     }
   }
 
   changeActiveSlide(active_slide){
+    const { current_slide, changeSlide } = this.props;
+    const { slide_times, ytplayer } = this.state;
     this.setState({ active_slide });
-    this.props.changeSlide(active_slide);
+    if (active_slide > 0 && slide_times[active_slide]){
+      if (slide_times[active_slide][2] !== 0){
+        ytplayer.pauseVideo();
+      }else{
+        ytplayer.playVideo();
+      }
+    }
+    if (current_slide !== active_slide) changeSlide(active_slide);
   }
 
   render() {

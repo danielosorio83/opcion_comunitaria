@@ -18,9 +18,25 @@ class Videopt extends Component {
     this.props.findVideopt(this.props.match.params.id);
   }
 
+  parseQS(){
+    return queryString.parse(this.props.location.search.replace('?', ''));
+  }
+
+  planId(){
+    const params = this.parseQS();
+    return params.plan;
+  }
+
+  lupId(){
+    const params = this.parseQS();
+    return params.lup;
+  }
+
   pathToBack(){
-    const params = queryString.parse(this.props.location.search.replace('?', ''));
-    const path = params.lup ? '/lups/' + params.lup : '/videopts';
+    const plan_id = this.planId();
+    const lup_id = this.lupId();
+    let path = lup_id ? '/lups/' + lup_id : '/videopts';
+    path += plan_id ? `?plan=${plan_id}` : '';
     return BASEDIR + path;
   }
 

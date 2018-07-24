@@ -6,12 +6,13 @@ import { path_by_tipo } from '../../globals';
 
 class LupPasos extends Component {
   renderPasos(){
-    const { pasos, lup_id } = this.props;
+    const { pasos, lup_id, plan_id } = this.props;
+    const path_with_plan = plan_id ? `&plan=${plan_id}` : '';
     return Object.keys(pasos).map( (i) => {
       let paso = pasos[i];
       return (
         <li key={i}>
-          <strong>{i}. <Link to={`${BASEDIR}/${path_by_tipo(paso.tipo)}/${paso.tipoid}?lup=${lup_id}`}>{paso.descripcion}</Link></strong>
+          <strong>{i}. <Link to={`${BASEDIR}/${path_by_tipo(paso.tipo)}/${paso.tipoid}?lup=${lup_id}${path_with_plan}`}>{paso.descripcion}</Link></strong>
         </li>
       )
     })

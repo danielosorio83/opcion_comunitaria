@@ -5,13 +5,13 @@ import VideoptSlideshare from './videopt_slideshare';
 import VideoptNoSlideshare from './videopt_no_slideshare';
 import VideoptYoutubeLeft from './videopt_youtube_left';
 import VideoptYoutubeRight from './videopt_youtube_right';
+import VideoptSync from './videopt_sync';
 
 class VideoptPublica extends Component {
   constructor(props){
     super(props);
     this.state = {
       current_slide: 0,
-      slide_times: [],
       player_ready: false
     }
   }
@@ -38,11 +38,11 @@ class VideoptPublica extends Component {
     return (
       <Fragment>
         { slideshare ? <VideoptSlideshare /> : <VideoptNoSlideshare /> }
-        {
-          videoleft
-          ? <VideoptYoutubeLeft player_ready={this.state.player_ready} setPlayerReady={this.setPlayerReady.bind(this)} current_slide={this.state.current_slide} changeSlide={this.changeSlide.bind(this)} />
+        { videoleft
+          ? <VideoptYoutubeLeft player_ready={this.state.player_ready} setPlayerReady={this.setPlayerReady.bind(this)} current_slide={this.state.current_slide} changeSlide={this.changeSlide.bind(this)} solovideo={solovideo} />
           : <VideoptYoutubeRight player_ready={this.state.player_ready} setPlayerReady={this.setPlayerReady.bind(this)} current_slide={this.state.current_slide} changeSlide={this.changeSlide.bind(this)} />
         }
+        <VideoptSync current_slide={this.state.current_slide} changeSlide={this.changeSlide.bind(this)} />
       </Fragment>
     );
   }

@@ -36,6 +36,10 @@ export const ERROR_EXAM = 'ERROR_EXAM';
 export const CREATE_EXAM = 'CREATE_EXAM';
 export const DESTROY_EXAM = 'DESTROY_EXAM';
 
+export const FIND_POPQUIZ = 'FIND_POPQUIZ';
+export const ERROR_POPQUIZ = 'ERROR_POPQUIZ';
+export const SUBMIT_POPQUIZ = 'SUBMIT_POPQUIZ';
+
 export const PATH_BY_TIPO = {
   enla: 'sitios',
   videopt: 'notas_tecnicas',
