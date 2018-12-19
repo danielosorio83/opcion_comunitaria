@@ -9,7 +9,7 @@ class Anexos extends Component {
       let anexo = anexos[i];
       return (
         <li key={anexo.k19id}>
-          <a href={`${CENTRO_APOYO_DOWNLOAD_URL}&det=${anexo.k19id}`} target="_blank" alt={anexo.c19nombre}>{anexo.c19nombre}</a>
+          <a href={`${CENTRO_APOYO_DOWNLOAD_URL}&det=${anexo.k19id}`} target="_blank" rel={`anexo_${anexo.k19id}`} alt={anexo.c19nombre}>{anexo.c19nombre}</a>
         </li>
       )
     })
