@@ -24,9 +24,9 @@ class Home extends Component {
             <a className="btn btn-lg btn-secondary mr-1" href="http://capaz-pruebas.opcioncomunitaria.org/managers/sign_in">Zona de Pruebas</a>
             <a className="btn btn-lg btn-secondary" href="http://capaz-pruebas2.opcioncomunitaria.org/managers/sign_in">Zona de Pruebas 2</a>
           </p>
-          <p className="lead">
+          {/* <p className="lead">
             <a className="btn btn-lg btn-secondary" href="/ci/centro_apoyo">Centro de Apoyo</a>
-          </p>
+          </p> */}
         </main>
         <footer className="mastfoot mt-auto">
           <div className="inner">
